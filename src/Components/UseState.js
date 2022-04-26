@@ -13,11 +13,13 @@ function UseState({ name }) {
   React.useEffect(() => {
     
     if (loading) {
-      setError(false)
+      // setError(false)
       setTimeout(() => {
         if (value !== SECURITY_CODE) {
           setError(true); 
-        } 
+        } else {
+          setError(false); 
+        }
         setLoading(false);
       }, 3000)
     }
@@ -28,7 +30,7 @@ function UseState({ name }) {
     <div>
       <h2>Eliminar {name}</h2>
       <p>Por favor, escribe el codigo de seguridad.</p>
-      {error && (
+      {(error && !loading) && (
         <p>Error: el código es incorrecto</p>
       )}
       {loading && (
